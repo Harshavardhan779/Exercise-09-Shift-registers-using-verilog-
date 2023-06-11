@@ -41,39 +41,122 @@ FIGURE-04
 A Parallel in Parallel out (PIPO) shift register is used as a temporary storage device and like SISO Shift register it acts as a delay element.
 
 ### Procedure
-/* write all the steps invloved */
+Step 1:
+Create a new file in quartus II.
+
+Step 2:
+Module Declaration. Module should have the file name.
+
+Step 3:
+Use begin declaration to define the functionality of logic circuits.
+
+Step 4:
+Within begin use if statements.
+
+Step 5:
+At the end give endmodule.
+
+Step 6:
+Run the program and choose RTL viewer to get RTL realization.
 
 
 
 ### PROGRAM 
-/*
+```python
 Program for  Implementation-of Shift-registers-using-verilog-
-Developed by: 
-RegisterNumber:  
-*/
-
-
-
-
+Developed by: Harsha vardhan
+RegisterNumber: 212222240114  
+```
+### Parallel-In Parallel-Out(PIPO):
+```python
+module ex9(PI,Clk,PO);
+input Clk;
+input [3:0] PI;
+output reg [3:0] PO;
+always @ (posedge Clk)
+begin
+PO=PI;
+end 
+endmodule
+```
+### Serial-In Parallel-Out(SIPO):
+```python
+module ex9(SI,Clk,Po);
+input SI,Clk;
+output [0:7]  Po;
+reg [0:7]temp;
+always @ (posedge Clk)
+begin
+temp={temp[0:6],SI};
+end
+assign Po=temp;
+endmodule 
+```
+### Parallel in Serial out(PISO):
+```python
+module ex9(Clk, Parallel_In,load, Serial_Out);
+input Clk,load;
+input [3:0]Parallel_In;
+output reg Serial_Out;
+reg [3:0]tmp;
+always @(posedge Clk)
+begin
+if(load)
+tmp<=Parallel_In;
+else
+begin
+Serial_Out<=tmp[3];
+tmp<={tmp[2:0],1'b0};
+end
+end
+endmodule
+```
 
 
 ### RTL LOGIC  REGISTERS   
 
+### Parallel-In Parallel-Out(PIPO):
+
+
+![pipo rtl](https://github.com/Harshavardhan779/Exercise-09-Shift-registers-using-verilog-/assets/118707175/3c7becfb-bf13-46df-8aee-a3d483b9a071)
 
 
 
+### Serial-In Parallel-Out(SIPO):
 
 
+![sipo rtl](https://github.com/Harshavardhan779/Exercise-09-Shift-registers-using-verilog-/assets/118707175/f089e247-006c-42c4-b98b-61793dd571fd)
+
+
+
+### Parallel in Serial out(PISO):
+
+
+![rtl](https://github.com/Harshavardhan779/Exercise-09-Shift-registers-using-verilog-/assets/118707175/c18f04bb-8c31-457b-b454-6e2cc3e97a23)
 
 
 
 ### TIMING DIGRAMS FOR SHIFT REGISTERS
 
+### Parallel-In Parallel-Out(PIPO):
+
+
+![pipo timing](https://github.com/Harshavardhan779/Exercise-09-Shift-registers-using-verilog-/assets/118707175/5d48e6e8-92ed-4703-917d-0973ac7e2339)
+
+
+### Serial-In Parallel-Out(SIPO):
+
+
+![sipo timing](https://github.com/Harshavardhan779/Exercise-09-Shift-registers-using-verilog-/assets/118707175/00f56eff-8e26-410b-8957-ba1aa4e51014)
 
 
 
+### Parallel in Serial out(PISO):
 
+
+![timing](https://github.com/Harshavardhan779/Exercise-09-Shift-registers-using-verilog-/assets/118707175/bc02cf6f-e0a3-4703-bf50-e6f40005d460)
 
 
 
 ### RESULTS 
+PISO , PIPO,PISO has been implemented using verilog and validated their functionality using their functional tables.
